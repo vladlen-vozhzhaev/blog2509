@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            body{
+                background: url("/img/city.png") no-repeat;
+                background-size: cover;
+            }
+            img{
+                width: 300px;
+                transform: scaleX(-1);
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="/img/plane.png" onclick="handlerClick()" id="plane" alt="">
+        <script>
+            let plane = document.getElementById("plane");
+            let moveX = 0;
+            let moveToRight = true;
+            function movePlane() {
+                plane.style.left = moveX + "px";
+                if (moveToRight) {
+                    moveX++;
+                } else {
+                    moveX--;
+                }
+                if (window.innerWidth - 300 == moveX) {
+                    moveToRight = false;
+                    plane.style.transform = "scaleX(1)";
+                } else if (moveX == 0) {
+                    moveToRight = true;
+                    plane.style.transform = "scaleX(-1)";
+                }
+            }
+            setInterval(movePlane, 10);
+
+            function handlerClick(){
+                let airdrop = document.createElement("img");
+                airdrop.src = "/img/parachute.png";
+                airdrop.style.width = "100px";
+                airdrop.style.position = "absolute";
+                airdrop.style.left = moveX+"px";
+                document.body.append(airdrop);
+                console.log("Клик по самолёту")
+                let moveY = 0;
+                let timer = setInterval(()=>{
+                    airdrop.style.top = moveY+"px";
+                    moveY++;
+                    if(moveY >= window.innerHeight - airdrop.getBoundingClientRect().height){
+                       clearInterval(timer);
+                    }
+                }, 50)
+            }
+        </script>
+    </body>
+</html>

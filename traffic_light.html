@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Мой сайт</title>
+		<style>
+			.container{
+				width: 300px; /* устанавливаем ширину 300px */
+				background: black;
+				margin: auto;
+				border: 4px solid silver;
+				padding-bottom: 15px; 
+			}
+			.stop, .wait, .go{
+				width: 150px;
+				height: 150px;
+				border-radius: 75px;
+				margin: auto;
+				margin-top: 15px; /* внешний отступ сверху 15px */
+				border: 2px solid gray;
+				box-shadow: inset 0 0 10px 5px rgba(0,0,0, .5);
+				background: silver;
+			}
+			.stop{ /* назначаем анимацию с названием stop которая работает 20s и повторяется */
+				animation: stop 20s infinite;
+			}
+			.wait{
+				animation: wait 20s infinite
+			}
+			.go{
+				animation: go 20s infinite;
+			}
+			@keyframes stop{
+				0%{background:red;} 
+				19%{background:red;} 
+				20%{background: gray;}
+				59%{background: gray;}
+				60%{background:red;}
+				100%{background:red;}
+			}
+			@keyframes wait{
+				19%{background: gray;}
+				20%{background: yellow;}
+				29%{background: yellow;}
+				30%{background: gray;}
+				49%{background: gray;}
+				50%{background: yellow;}
+				59%{background: yellow;}
+				60%{background: gray;}
+			}
+			@keyframes go{
+				29%{background: gray;}
+				30%{background:	lime;}
+				49%{background:	lime;}
+				50%{background: gray;}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Коммент для HTML -->
+		<div class="container">
+			<div class="stop"></div>
+			<div class="wait"></div>
+			<div class="go"></div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    let cars = ["bmw", "audi", "kia", "vaz"];
+    /*console.log($cars[4])
+    console.log($cars);*/
+    /*let i = 0;
+    while (i<3){
+      console.log("Hello world");
+      i++;
+    }*/
+    /*for (let i = 0; i < cars.length; i++) {
+      console.log(cars[i]);
+    }*/
+    /*
+    * Имеется набор символов let chars = ["К","Л","М","Н"]
+    * Задача, вывести на экран все возможные 4х символьные комбинации слов
+    * Задача, выведенные строки, должны быть пронумерованы
+    * Задача, вывести на экран, номер строки на которой находится комбинация ЛКМН
+    * 1) КККК
+    * 2) КККЛ
+    * 3) КККМ
+    * 4) КККН
+    * 5) ККЛК
+    * 6) ККЛЛ
+    * */
+    let chars = ["К","Л","М","Н"];
+    for (let i = 0; i < chars.length; i++) {
+      for (let j = 0; j < chars.length; j++) {
+        for (let k = 0; k < chars.length; k++) {
+          for (let l = 0; l < chars.length; l++) {
+            console.log(chars[i]+chars[j]+chars[k]+chars[l]);
+          }
+        }
+      }
+    }
+
+  </script>
+</body>
+</html>

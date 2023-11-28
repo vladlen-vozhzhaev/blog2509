@@ -1,0 +1,24 @@
+<div class="container my-5" id="container">
+
+</div>
+<script>
+    const container = document.getElementById('container'); // Обращаемся к блоку с id="container"
+    fetch('/getArticles') // Отправляем запрос к серверу
+        .then(response=>response.json()) // Получаем ответ в формате JSON
+        .then(result=>{ // Разбираем ответ от сервера
+            console.log(result); // Печатаем на консоль
+            for (let i = 0; i < result.length; i++) { // Перебираем статьи которые пришли с сервера
+                let article = result[i]; // Выбираем очередной элемент массива
+                const a = document.createElement('a'); // Создаём ссылку заголовк
+                const div = document.createElement('div'); // Создаём блок для контента
+                const p = document.createElement('p'); // Создаём параграф для автора
+                const hr = document.createElement('hr'); // Просто горизонтальная линия
+                a.classList.add('h3');
+                a.href = "/blog/"+article.id;
+                a.innerText = article.title; // Записываем заголовок
+                div.innerText = article.content; // Записываем контент
+                p.innerText = article.author; // Записываем автора
+                container.append(a, div, p, hr); // Размещаем теги на странице
+            }
+        })
+</script>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let $login = prompt("Введите логин");
+        let $pass = prompt("Введите пароль");
+        if($login == "admin@mail.ru" && $pass == "123"){
+            console.log("Доступ разрешен для ADMIN");
+        }else if($login == "user@mail.ru" && $pass == "321"){
+            console.log("Доступ разрешен для USER");
+        }else{
+            console.log("Доступ запрещен");
+        }
+    </script>
+</body>
+</html>

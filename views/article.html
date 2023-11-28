@@ -1,0 +1,19 @@
+<div class="container my-5" id="container">
+    <h1 id="title"></h1>
+    <div id="content"></div>
+    <p id="author"></p>
+</div>
+<script>
+  const articleId = location.pathname.split('/')[2];
+  const title = document.getElementById('title');
+  const content = document.getElementById('content');
+  const author = document.getElementById('author');
+  fetch('/getArticle/'+articleId)
+    .then(response=>response.json())
+    .then(result=>{
+        console.log(result);
+        title.innerText = result.title;
+        content.innerText = result.content;
+        author.innerText = result.author;
+    }) //???
+</script>

@@ -1,0 +1,52 @@
+<div class="container my-5">
+    <h1 class="text-center my-4">Регистрация на сайте</h1>
+    <div class="col-md-5 mx-auto">
+        <form onsubmit="sendForm(this); return false;" method="post">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-user-tie"></i></span>
+                        <input name="name" type="text" class="form-control" placeholder="Имя">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text"><i class="fa-solid fa-user-tie"></i></span>
+                        <input name="lastname" type="text" class="form-control" placeholder="Фамилия">
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="fa-solid fa-at"></i></span>
+                <input name="email" type="email" class="form-control" placeholder="E-mail">
+            </div>
+            <p class="text-danger" id="info" hidden>Такой пользователь уже существует</p>
+            <div class="my-3 input-group">
+                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                <input name="pass" type="password" class="form-control" placeholder="Пароль">
+            </div>
+            <div class="mb-3">
+                <input type="submit" class="form-control btn btn-primary" value="Зарегистрироваться">
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    let info = document.getElementById('info');
+    function sendForm(form){
+        info.hidden = true;
+        console.log("Отправка формы");
+        const formData = new FormData(form);
+        fetch('/reg', {
+            method: "POST",
+            body: formData
+        }).then(response=>response.json())
+            .then(result=>{
+                if(result.result == "success"){
+                    location.href = '/login';
+                }else{
+                    info.hidden = false;
+                }
+            })
+    }
+</script>

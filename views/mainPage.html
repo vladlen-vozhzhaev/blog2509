@@ -16,7 +16,7 @@
                 a.classList.add('h3');
                 a.href = "/blog/"+article.id;
                 a.innerText = article.title; // Записываем заголовок
-                div.innerText = article.content; // Записываем контент
+                div.innerHTML= article.content; // Записываем контент
                 p.innerText = article.author; // Записываем автора
                 container.append(a, div, p, hr); // Размещаем теги на странице
             }

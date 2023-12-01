@@ -5,8 +5,20 @@ class Blog{
         $title = $_POST['title'];
         $content = $_POST['content'];
         $author = $_POST['author'];
+        $html = new simple_html_dom();
+        $html->load($content);
+        $img = $html->getElementByTagName('img');
+        $meta = explode(',', $img->src)[0];
+        $base64 = explode(',',$img->src)[1]; // это надо будет сохранить в файл
+        $extension = explode(';', explode('/', $meta)[1])[0];
+        $fileName = "img/blog/".microtime().".".$extension;
+        $ifp = fopen($fileName, 'wb');
+        fwrite($ifp, base64_decode($base64));
+        fclose($ifp);
+        $img->src = "/".$fileName;
+        $content = $html->save();
         $mysqli->query("INSERT INTO articles (title, content, author) VALUES ('$title', '$content', '$author')");
-        header("Location: /blog.php");
+        return json_encode(['result'=>'success']);
     }
     public static function getArticleById($articleId){
         global $mysqli;

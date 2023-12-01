@@ -22,12 +22,14 @@ class Route{
         // /foo/bar/baz -> ['', 'foo', 'bar', 'baz']
         // /login -> ['', 'login']
         // /getArticle/2 -> ['', 'getArticle', 2]
+        $param = null;
         if(count($paths)>2){
             $uri = explode('/', $uri)[1];
             $uri = '/'.$uri.'/'.$paths[2];
+            $param = $paths[2];
         }
         if($_SERVER['REQUEST_URI'] == $uri && $_SERVER['REQUEST_METHOD'] == 'GET'){
-            exit($handler());
+            exit($handler($param));
         }
     }
     public static function post($uri, $handler){

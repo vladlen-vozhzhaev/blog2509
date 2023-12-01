@@ -8,12 +8,13 @@ $mysqli = new mysqli("127.0.0.1", "root", "", "blog2509");
 require_once('php/classes/User.php');
 require_once('php/classes/Blog.php');
 require_once('php/classes/Route.php');
+require_once('php/simple_html_dom.php');
 
 Route::view('/', 'views/mainPage.html');
 
 Route::view('/blog/{id}', 'views/article.html');
 
-Route::get('/getArticle/{id}', function (){return Blog::getArticleById(1);});
+Route::get('/getArticle/{id}', function ($id){return Blog::getArticleById($id);});
 Route::get('/getArticles', function (){return Blog::getArticles();});
 Route::get('/getUserData', function (){return User::getUserData();});
 Route::get('/logout', function (){return User::logout();});
